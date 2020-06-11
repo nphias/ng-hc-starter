@@ -181,6 +181,7 @@ export class TimelineComponent implements OnInit {
   }; 
 
   ngOnInit() {
+    console.log("in TimeLine component")
     this.myprofile.watch().result().then(result=>{
       console.log(result)
     })

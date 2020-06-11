@@ -3,20 +3,19 @@ import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
 import { makeExecutableSchema } from 'graphql-tools'
 import { ApolloLink } from 'apollo-link'
 import { SchemaLink } from 'apollo-link-schema'
-//import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
-import { HolochainConnection } from '@uprtcl/holochain-provider';
-import { typeDefs } from './schema'
-import {resolvers} from './resolvers'
+
+import { HolochainService } from '../core/holochain.service'
+import { typeDefs } from './schema';
+import {resolvers} from './resolvers';
+//import { getConnection } from'./context';
 
 
-
-//const uri = 'https://api.spacex.land/graphql/'; // <-- add the URL of the GraphQL server here
-export function createApollo() {
-   const connection = new HolochainConnection({ host: 'ws://localhost:8888'})
-    //connection.connection()
-    const schemaLinks = new SchemaLink({ schema: makeExecutableSchema({ typeDefs, resolvers })})//, context:connection})
-    const links =[schemaLinks] 
+export async function createApollo(hcs:HolochainService) {
+  console.log("in graph module")
+  const callZome = hcs.hcConnection
+  const schemaLinks = new SchemaLink({ schema: makeExecutableSchema({ typeDefs, resolvers}), context: {callZome} })
+  const links =[schemaLinks] 
 
   return {
     link: ApolloLink.from(links),
@@ -34,8 +33,8 @@ export function createApollo() {
   providers: [
     {
       provide: APOLLO_OPTIONS,
-      useFactory: createApollo
-      //deps: [HttpLink],
+      useFactory: createApollo,
+      deps: [HolochainService]
     },
   ],
 })
