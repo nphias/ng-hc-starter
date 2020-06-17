@@ -8,18 +8,19 @@ export interface Agent {
 }
 
 export interface Response {
-  agents: Agent[]
+  allAgents: Agent[]
 }
-
 
 @Injectable({
   providedIn: 'root',
 })
 export class AllAgentsGQL extends Query<Response> {
   document = gql`
-  query allAgents {
-    id
-    username
+  query GetAllAgents {
+    allAgents {
+      id
+      username
+    }
   }
 `;
 }

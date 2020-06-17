@@ -21,11 +21,13 @@ export interface Response {
 })
 export class MyProfileGQL extends Query<Response> {
   document = gql`
-  query me {
-    id
-    agent {
+  query myProfile {
+    me {
       id
-      username
+      agent {
+        id
+        username
+      }
     }
   }
 `;

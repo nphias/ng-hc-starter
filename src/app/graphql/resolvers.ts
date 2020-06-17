@@ -1,21 +1,19 @@
 import { INSTANCE_NAME, ZOME_NAME } from '../config';
-//import { HolochainConnection } from '@uprtcl/holochain-provider';
-
-//export const call = new HolochainConnection()
 
 export const resolvers = {
   Query: {
-    async allAgents(_, __, { callZome }) {
-
-      const allAgents = await callZome.call(INSTANCE_NAME, ZOME_NAME,'get_all_agents', {});
+    async allAgents(_, __, connection) {
+      console.log(connection)
+      const allAgents = await connection.call(INSTANCE_NAME, ZOME_NAME,'get_all_agents', {});
+      console.log(allAgents)
       return allAgents.map((agent) => ({
         id: agent.agent_id,
         username: agent.username,
       }));
     },
-    async me(_, __, { callZome }) {
-
-      const address = await callZome.call(INSTANCE_NAME, ZOME_NAME,'get_my_address', {});
+    async me(_, __, connection) {
+      
+      const address = await connection.call(INSTANCE_NAME, ZOME_NAME,'get_my_address', {});
       return { id: address };
     },
   },
@@ -28,21 +26,21 @@ export const resolvers = {
     id(parent) {
       return parent.id;
     },
-    username(parent, _, { callZome }) {
+    username(parent, _, connection ) {
       //const cachedAgent = cache['data'].data[parent.id];
       //if (cachedAgent && cachedAgent.username) return cachedAgent.username;
 
-      return callZome.call(INSTANCE_NAME, ZOME_NAME,'get_username', {
+      return connection.call(INSTANCE_NAME, ZOME_NAME,'get_username', {
         agent_address: parent.id,
       });
     },
   },
   Mutation: {
-    async setUsername(_, { username }, { callZome }) {
-
-      const agentId = await callZome.call(INSTANCE_NAME, ZOME_NAME,'set_username', { username });
+    async setUsername(_,  {username}, connection ) {
+      console.log(username)
+      const agent = await connection.call(INSTANCE_NAME, ZOME_NAME,'set_username', { username });
       return {
-        id: agentId,
+        id: agent.agent_id,
         username,
       };
     },

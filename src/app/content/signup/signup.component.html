@@ -4,13 +4,17 @@
       <div class="login-page">
         <div class="form">
           <div class="login-form">
+            <label>{{errorMessage}}</label>
             <input type="text" placeholder="handle" formControlName="handle" />
-            <input
+            <input *ngIf="!(registered | async) as boolean"
               type="text"
               placeholder="Avatar Link"
               formControlName="avatar"
             />
-            <button>
+            <button *ngIf="!(registered | async) as boolean">
+              register
+            </button>
+            <button *ngIf="(registered | async) as boolean">
               login
             </button>
           </div>

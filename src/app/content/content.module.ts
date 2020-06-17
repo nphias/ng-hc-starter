@@ -6,15 +6,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from './home/home.component';
-import { TimelineComponent } from './timeline/timeline.component';
+import { UserListComponent } from './userlist/userlist.component';
 import { SignupComponent } from './signup/signup.component';
+import { ProfileComponent } from "./profile/profile.component";
+
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    TimelineComponent,
+    UserListComponent,
     SignupComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

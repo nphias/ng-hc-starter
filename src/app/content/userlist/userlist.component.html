@@ -1,0 +1,36 @@
+ <div class="col-md-9" style="margin: auto;">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <section class="post-footer-comment-wrapper">
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Avatar</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date Joined</th>
+                <th scope="col">Last seen</th>
+              </tr>
+            </thead>
+           
+            <tbody>
+                <tr *ngFor='let user of (userlist | async)'>
+                  <th scope="row"><a routerLink="/profile/{{ user.hash }}" routerLinkActive="active">
+                    <img
+                      class="photo-profile"
+                      src="../assets/img/avatar_placeholder.jpg"
+                      width="40"
+                      height="40"
+                      alt="..."
+                    />
+                  </a></th>
+                  <td>{{user.handle}}</td>
+                  <td>31/12/2012</td>
+                  <td>01/01/2020</td>
+                </tr>
+            </tbody>
+          </table>
+          <br />
+        </section>
+      </div>
+    </div>
+  </div>

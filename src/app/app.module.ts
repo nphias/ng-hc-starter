@@ -5,7 +5,6 @@ import { ContentModule } from './content/content.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
 import { HolochainService } from './core/holochain.service';
 
 export function initializeConnection(holochainService: HolochainService) {
@@ -22,8 +21,7 @@ export function initializeConnection(holochainService: HolochainService) {
     BrowserModule,
     GraphQLModule,
     AppRoutingModule,
-    ContentModule,
-    HttpClientModule
+    ContentModule    
   ],
   providers: [ 
     HolochainService,

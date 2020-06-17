@@ -8,13 +8,12 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 import { HolochainService } from '../core/holochain.service'
 import { typeDefs } from './schema';
 import {resolvers} from './resolvers';
-//import { getConnection } from'./context';
 
 
-export async function createApollo(hcs:HolochainService) {
+export function createApollo(hcs:HolochainService) {
   console.log("in graph module")
   const callZome = hcs.hcConnection
-  const schemaLinks = new SchemaLink({ schema: makeExecutableSchema({ typeDefs, resolvers}), context: {callZome} })
+  const schemaLinks = new SchemaLink({ schema: makeExecutableSchema({ typeDefs, resolvers}), context: callZome })
   const links =[schemaLinks] 
 
   return {
