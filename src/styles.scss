@@ -11077,3 +11077,15 @@ body{
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
+#backdrop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-image: url(./assets/img/holochain_ring.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

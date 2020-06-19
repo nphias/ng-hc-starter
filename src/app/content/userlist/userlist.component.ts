@@ -14,14 +14,22 @@ import { AllAgentsGQL } from 'src/app/graphql/actions/all-agents-gql';
 export class UserListComponent implements OnInit {
   user: User;
   userlist: Observable<User[]>;
+  errorMessage:string
 
   constructor(private agents: AllAgentsGQL,  private router: Router) {
   }
 
   ngOnInit() {
-    this.userlist = this.agents.watch().valueChanges.pipe(map(result=>{
-      return result.data.allAgents.map(agent => new User(agent.id,agent.username))
-    }))
+    try {
+      this.userlist = this.agents.watch().valueChanges.pipe(map(result=>{
+        if (!result.errors)
+          return result.data.allAgents.map(agent => new User(agent.id,agent.username))
+        this.errorMessage = result.errors[0].message
+        return null
+      }))
+    } catch(exception){
+        this.errorMessage = exception
+    }
   }
 
 }

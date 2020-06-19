@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 // import { computeStyle } from '@angular/animations/browser/src/util';
 import { User } from '../../models/User';
@@ -16,7 +15,7 @@ import { map } from 'rxjs/operators';
 })
 export class SignupComponent implements OnInit {
   user: User;
-  registered: Promise<boolean>|null = null;
+  registered: Promise<boolean>| boolean = false;
   errorMessage: string = ""
 
   constructor(
@@ -31,8 +30,16 @@ export class SignupComponent implements OnInit {
     avatar: ["", Validators.required]
   });
 
+  ngOnInit() {
+    this.registered = this.isRegistered().then((result)=>{
+      if(result)
+      this.errorMessage = "You are registered as: "+this.user.handle
+      return result
+    }) as Promise<boolean>
+  }
+
  async signUp(){
-   console.log(this.user)
+    console.log("signup called")
     const handle:string = this.profileForm.get("handle").value;
     let avatarLink = this.profileForm.get("avatar").value;
     if (handle.length == 0) {
@@ -48,7 +55,7 @@ export class SignupComponent implements OnInit {
         this.user.handle = handle
         console.log("user registered")
       }catch(error){
-        console.log(error)
+        this.errorMessage = error
       }
     } else if(handle != this.user.handle){
         this.errorMessage = "Incorrect Username"
@@ -63,25 +70,18 @@ export class SignupComponent implements OnInit {
 
   private async isRegistered():Promise<boolean>{
     if(!this.user)
-     await this.getProfileData()
+    this.user =  await this.getProfileData()
     if(this.user)
      return this.user.handle != (null || undefined) ? true : false       
   }
 
   private getProfileData():Promise<User>{
-     return this.myprofile.fetch().pipe(map(result=>{
-         return new User(result.data.me.id, result.data.me.agent.username)
-       })).toPromise().then(result=> {
-         if ( result ) {
-           this.user = result 
-             return result
-         } else{
-           console.log("no agent found")
-         }
-     }) as Promise<User>
-  }
-
-  ngOnInit() {
-    this.registered = this.isRegistered()
+    return this.myprofile.fetch().pipe(map(result=>{
+        return new User(result.data.me.id, result.data.me.agent.username)
+    })).toPromise().then((result)=> { return result},
+      (reason)=>{ 
+          this.errorMessage = reason
+          return null
+    }) as Promise<User> | null
   }
 }

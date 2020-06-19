@@ -73,13 +73,6 @@
         <span>Home</span>
       </a>
     </li>
-
-    <li class="nav-item">
-      <a class="nav-link">
-        <i class="fas fa-bell fa-fw"></i>
-        <span>Notifications</span></a
-      >
-    </li>
     <li class="nav-item">
       <a class="nav-link">
         <i class="fas fa-fw fa-table"></i>
@@ -104,13 +97,14 @@
         <li class="breadcrumb-item active">Profile</li>
       </ol>
 
-      <!-- Posts-->
+      <!-- userdata-->
       <div class="col-md-9" style="margin: auto;">
         <div class="panel panel-default">
           <div class="panel-body">
             <section class="post-heading">
               <div class="row">
                 <div class="col-md-11">
+                  <div style="color:red">{{errorMessage}}</div>
                   <div class="media">
                     <div class="media-left">
                         <h4 class="media-heading">{{ user.handle }}</h4>       
@@ -139,39 +133,4 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
-  <div
-    class="modal fade"
-    id="logoutModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button
-            class="close"
-            type="button"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Select "Logout" below if you are ready to end your current session.
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">
-            Cancel
-          </button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
