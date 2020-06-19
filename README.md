@@ -1,5 +1,9 @@
 # ng-graphql-hc-starter
 
+## Holochain setup
+
+You will need to download and run the [profile zome](https://github.com/holochain-open-dev/profiles-zome) in a holochain conductor and check your configuration details match the config file in this repo 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
 ## Development server
