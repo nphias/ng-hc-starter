@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
 })
 export class SignupComponent implements OnInit {
   user: User;
-  registered: Promise<boolean>| boolean = false;
+  registered: Promise<boolean> = new Promise(()=>{return false});
   errorMessage: string = ""
 
   constructor(
