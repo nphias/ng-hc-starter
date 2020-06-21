@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { User } from "../../models/User";
+import { User } from "../../../models/User";
 import { Router } from "@angular/router";
 import { AllAgentsGQL } from 'src/app/graphql/actions/all-agents-gql';
 

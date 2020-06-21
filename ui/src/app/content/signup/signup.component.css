@@ -92,7 +92,7 @@
   color: #ef3b3a;
 }
 #bgimage {
-  background: url(./../../../assets/img/graph_blue.png);
+  background: url(src/assets/img/graph_blue.png);
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
