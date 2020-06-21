@@ -11,4 +11,5 @@ npm install / yarn install
 
 npm start / yarn start
 
-
+## TODO
+ - do a better job on the CSS use tailwind
