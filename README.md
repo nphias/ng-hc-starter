@@ -12,4 +12,6 @@ npm install / yarn install
 npm start / yarn start
 
 ## TODO
- - do a better job on the CSS use tailwind
+ - do a better job on the CSS
+ - functionality to signal back new users to the UI (apollo subscriptions)
+ - delete profile functionality
