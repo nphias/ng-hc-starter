@@ -2,7 +2,7 @@
 
 ## Holochain setup
 
-uses version 0.49-alpha1
+uses version 0.49-alpha1. 
 enter the dna directory and use nix shell to run the conductor :
 
 nix-shell
