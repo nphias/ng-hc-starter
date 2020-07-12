@@ -5,7 +5,7 @@
 uses version 0.49-alpha1.  
 enter the dna directory and use nix shell to run the conductor :
 
-- nix-shell
+- nix-shell https://holochain.love
 - hc package
 - hc run
 
