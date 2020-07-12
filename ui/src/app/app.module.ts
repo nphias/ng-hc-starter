@@ -6,6 +6,7 @@ import { ContentModule } from './content/content.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HolochainService } from './core/holochain.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function initializeConnection(holochainService: HolochainService) {
   return (): Promise<any> => { 
@@ -21,7 +22,8 @@ export function initializeConnection(holochainService: HolochainService) {
     BrowserModule,
     GraphQLModule,
     AppRoutingModule,
-    ContentModule    
+    ContentModule,
+    NgbModule    
   ],
   providers: [ 
     HolochainService,
