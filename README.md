@@ -2,17 +2,18 @@
 
 ## Holochain setup
 
-uses version 0.49-alpha1. 
+uses version 0.49-alpha1.
+
 enter the dna directory and use nix shell to run the conductor :
 
-nix-shell
-hc package
-hc run
+- nix-shell
+- hc package
+- hc run
 
 
 ## UI setup
 
-in another shell enter the ui directory.
+in another shell enter the ui directory.;
 npm install / yarn install
 
 npm start / yarn start
