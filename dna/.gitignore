@@ -2,8 +2,12 @@
 
 # compiled output
 /dist
-/tmp
-/out-tsc
+.cargo/
+target/
+/test/package-lock.json
+/test/node_modules
+/zomes/profiles/code/target/
+/zomes/profiles/code/.hcbuild
 # Only exists if Bazel was run
 /bazel-out
 

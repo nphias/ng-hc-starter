@@ -96,6 +96,7 @@
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
+  min-height:100vh;
 }
 body {
   background: #60666b; /* fallback for old browsers */

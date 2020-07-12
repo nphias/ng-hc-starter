@@ -2,7 +2,13 @@
 
 ## Holochain setup
 
-enter the dna directory and use nix shell .. run the conductor 
+uses version 0.49-alpha1
+enter the dna directory and use nix shell to run the conductor :
+
+nix-shell
+hc package
+hc run
+
 
 ## UI setup
 
@@ -12,6 +18,5 @@ npm install / yarn install
 npm start / yarn start
 
 ## TODO
- - do a better job on the CSS
  - functionality to signal back new users to the UI (apollo subscriptions)
  - delete profile functionality
