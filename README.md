@@ -1,5 +1,8 @@
 # ng-graphql-hc-starter
 
+# loading sequence
+![image](angular_seq.png)
+
 ## Holochain setup
 
 uses version 0.49-alpha1.  
