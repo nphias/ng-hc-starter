@@ -1,13 +1,13 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-.cargo/
-target/
-/test/package-lock.json
-/test/node_modules
-/zomes/profiles/code/target/
-/zomes/profiles/code/.hcbuild
+/dna/dist
+/dna/.cargo/
+/dna/target/
+/dna/test/package-lock.json
+/dna/test/node_modules
+/dna/zomes/profiles/code/target/*
+/dna/zomes/profiles/code/.hcbuild
 # Only exists if Bazel was run
 /bazel-out
 

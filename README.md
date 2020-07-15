@@ -18,4 +18,4 @@ npm start / yarn start
 
 ## TODO
  - functionality to signal back new users to the UI (apollo subscriptions)
- - delete profile functionality
+ - profile-delete functionality missing
