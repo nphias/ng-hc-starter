@@ -1,5 +1,8 @@
-import { INSTANCE_NAME, ZOME_NAME } from '../config';
+import { environment } from '@environment';
 import {GraphQLError} from 'graphql'
+
+const ZOME_NAME = 'profiles'
+const INSTANCE_NAME = environment.INSTANCE_NAME
 
 export const resolvers = {
   Query: {
@@ -49,5 +52,10 @@ export const resolvers = {
         username,
       };
     },
-  },
+    async deleteUsername(_, {}, connection) {
+      if (connection.state == 2)
+        return new GraphQLError("Holochain is disconnected")
+      return connection.call(INSTANCE_NAME, ZOME_NAME,'delete_my_username', {});
+    }
+  }
 };

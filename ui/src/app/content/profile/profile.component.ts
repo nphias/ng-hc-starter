@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from "@angular/core";
-//import { ConnectionService } from "../../core/connection.service";
 import { FormBuilder } from "@angular/forms";
 import { Validators } from "@angular/forms";
-
-import { User } from "../../models/User";
 import { Router } from "@angular/router";
 import { HolochainService } from 'src/app/core/holochain.service';
+import { Agent } from 'src/app/graphql/actions/myprofile-gql';
+
 
 
 @Component({
@@ -14,7 +13,7 @@ import { HolochainService } from 'src/app/core/holochain.service';
   styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
-  user: User //Promise<User> | null = null
+  user: Agent //Promise<User> | null = null
   errorMessage:string = ""
 
   constructor(
@@ -32,8 +31,8 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(["signup"]);
     if(this.holochainservice.hcConnection.state == 2)
       this.errorMessage = "Holochain is disconnected"
-    this.user = new User(sessionStorage.getItem("userhash"),sessionStorage.getItem("username"))
-    this.user.avatarURL = sessionStorage.getItem("avatar")
+    this.user = <Agent>{id:sessionStorage.getItem("userhash"),username:sessionStorage.getItem("username")}
+    this.user.avatar = sessionStorage.getItem("avatar")
   }
 
   logout(){

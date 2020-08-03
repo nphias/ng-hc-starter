@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HolochainConnection } from '@uprtcl/holochain-provider';
-import { HOST_URL } from '../config';
+import { environment } from '@environment';
 
 @Injectable({
   providedIn: "root"
@@ -10,7 +10,7 @@ export class HolochainService {
 
   async init(){
     this.hcConnection = new HolochainConnection({
-        host: HOST_URL
+        host: environment.HOST_URL
         })
         try{
             await this.hcConnection.ready()//.then((result)=>{

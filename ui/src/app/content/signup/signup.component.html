@@ -1,11 +1,11 @@
 <body>
   <div id="bgimage">
-    <form [formGroup]="profileForm" (ngSubmit)="signUp()">
-      <div class="login-page">
-        <div class="form">
-          <div class="login-form">
+    <div class="login-page">
+      <div class="form">
+        <div class="login-form">
+          <form [formGroup]="profileForm" (ngSubmit)="signUp()">
             <label style="color:red">{{errorMessage}}</label>
-            <input type="text" placeholder="handle" formControlName="handle" />
+            <input *ngIf="!(registered | async)" type="text" placeholder="handle" formControlName="handle" />
             <input *ngIf="!(registered | async) as boolean"
               type="text"
               placeholder="Avatar Link"
@@ -14,12 +14,16 @@
             <button *ngIf="!(registered | async) as boolean">
               register
             </button>
-            <button *ngIf="(registered | async) as boolean">
-              login
-            </button>
-          </div>
+          </form>
+          <button *ngIf="(registered | async) as boolean" (click)="setAndRoute()">
+            Continue
+          </button>
+          <br/><br/>
+          <button *ngIf="(registered | async) as boolean" (click)="unregister()">
+            unregister
+          </button>
         </div>
       </div>
-    </form>
+    </div>
   </div>
 </body>

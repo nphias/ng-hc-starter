@@ -13,6 +13,7 @@ export const typeDefs =`
     me: Me!
   }
   type Mutation {
-    setUsername(username: String!): Agent!
+    setUsername(username: String!): Agent!,
+    deleteUsername(name:String!): Boolean!
   }
 `;

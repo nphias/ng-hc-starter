@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 export interface Agent {
   id: string;
   username: string;
+  avatar: string
 }
 
 export interface Me {

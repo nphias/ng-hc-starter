@@ -10,6 +10,9 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "@environment": ["./src/environments/environment.ts"]
+    },
     "target": "es2015",
     "lib": [
       "es2018",
