@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SetUsernameGQL } from 'src/app/graphql/actions/set-username-gql';
-import { RemoveMeGQL } from 'src/app/graphql/actions/remove-me-gql';
-import { MyProfileGQL,Agent } from 'src/app/graphql/actions/myprofile-gql'
+import { SetUsernameGQL } from 'src/app/graphql/queries/set-username-gql';
+import { RemoveMeGQL } from 'src/app/graphql/queries/remove-me-gql';
+import { MyProfileGQL,Agent } from 'src/app/graphql/queries/myprofile-gql'
 import { map } from 'rxjs/operators';
 
 

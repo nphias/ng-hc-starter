@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Router } from "@angular/router";
-import { AllAgentsGQL,Agent } from 'src/app/graphql/actions/all-agents-gql';
+import { AllAgentsGQL,Agent } from 'src/app/graphql/queries/all-agents-gql';
 
 @Component({
   selector: "app-userlist",
