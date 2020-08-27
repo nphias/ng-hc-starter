@@ -5,10 +5,10 @@
 
 ## Holochain setup
 
-uses version 0.49-alpha1.  
+currently uses holochain version 0.47-alpha1.  
 enter the dna directory and use nix shell to run the conductor :
 
-- nix-shell https://holochain.love
+- nix-shell
 - hc package
 - hc run
 
@@ -21,4 +21,3 @@ npm start / yarn start
 
 ## TODO
  - functionality to signal back new users to the UI (apollo subscriptions)
- - profile-delete functionality missing
