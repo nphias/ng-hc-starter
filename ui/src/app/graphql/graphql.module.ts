@@ -12,7 +12,7 @@ import {resolvers} from './resolvers';
 
 export function createApollo(hcs:HolochainService) {
   console.log("in graph module with connection:",hcs.hcConnection)
-  const callZome = hcs.hcConnection
+  const callZome = hcs
   const schemaLinks = new SchemaLink({ schema: makeExecutableSchema({ typeDefs, resolvers}), context: callZome })
   const links =[schemaLinks] 
 

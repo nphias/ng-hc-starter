@@ -8,6 +8,7 @@
 /dna/test/node_modules
 /dna/zomes/profiles/code/target/*
 /dna/zomes/profiles/code/.hcbuild
+/dna/old_profiles
 # Only exists if Bazel was run
 /bazel-out
 

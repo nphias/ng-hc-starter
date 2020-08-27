@@ -16,4 +16,8 @@ export const typeDefs =`
     setUsername(username: String!): Agent!,
     deleteUsername(name:String!): Boolean!
   }
+
+  type Subscription {
+    usernameSet: ID
+  }
 `;

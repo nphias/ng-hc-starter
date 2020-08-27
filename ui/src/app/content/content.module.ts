@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { UserListComponent } from './home/userlist/userlist.component';
 import { SignupComponent } from './signup/signup.component';
 import { ProfileComponent } from "./profile/profile.component";
+import { HeaderComponent } from "./common/header/header.component"
 
 
 
@@ -17,7 +18,8 @@ import { ProfileComponent } from "./profile/profile.component";
     HomeComponent,
     UserListComponent,
     SignupComponent,
-    ProfileComponent
+    ProfileComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

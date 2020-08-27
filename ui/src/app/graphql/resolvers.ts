@@ -1,5 +1,6 @@
 import { environment } from '@environment';
 import {GraphQLError} from 'graphql'
+import asyncify from 'callback-to-async-iterator';
 
 const ZOME_NAME = 'profiles'
 const INSTANCE_NAME = environment.INSTANCE_NAME
@@ -57,5 +58,14 @@ export const resolvers = {
         return new GraphQLError("Holochain is disconnected")
       return connection.call(INSTANCE_NAME, ZOME_NAME,'delete_my_username', {});
     }
-  }
+  },
+  Subscription: {
+    usernameSet:{
+      //const cb = connection.onSignal('username-set', ({user_address})=>{
+       // console.log(user_address)
+       // return user_address
+      //})
+      subscribe(_, __, connection): AsyncIterable<any> { return connection.subscribe('username-set') }//asyncify(cb)
+      } 
+   }
 };

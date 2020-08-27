@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
-import { MyProfileGQL } from 'src/app/graphql/actions/myprofile-gql';
+import { MyProfileGQL } from 'src/app/graphql/queries/myprofile-gql';
 
 
 @Component({
