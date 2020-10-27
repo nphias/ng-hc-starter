@@ -1,4 +1,4 @@
-# ng--hc-starter
+# ng-hc-starter
 
 # loading sequence
 ![image](angular_seq.png)
