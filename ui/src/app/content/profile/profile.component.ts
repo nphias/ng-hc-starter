@@ -3,9 +3,10 @@ import { FormBuilder } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { HolochainService } from 'src/app/core/holochain.service';
-import { Agent } from 'src/app/graphql/queries/myprofile-gql';
+import { Agent, Profile } from 'src/app/graphql/queries/myprofile-gql';
 import { UsernameSetGQL } from 'src/app/graphql/queries/subscriptions-gql';
 import { Observable,Subscription } from 'rxjs';
+import { Apollo } from 'apollo-angular';
 
 
 
@@ -20,10 +21,10 @@ export class ProfileComponent implements OnInit {
   usernameSubscription: Subscription
 
   constructor(
+    private apollo: Apollo,
     private fb: FormBuilder,
     private router: Router,
     private holochainservice: HolochainService,
-    private onusernameSet:UsernameSetGQL,
   ) {}
 
   postForm = this.fb.group({
@@ -31,14 +32,10 @@ export class ProfileComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.usernameSubscription = this.onusernameSet.subscribe().subscribe(result =>{
-      console.log("username subscription result",result)
-    })
     if (!sessionStorage.getItem("userhash"))
       this.router.navigate(["signup"]);
-    if(this.holochainservice.hcConnection.state == 2)
-      this.errorMessage = "Holochain is disconnected"
-    this.user = <Agent>{id:sessionStorage.getItem("userhash"),username:sessionStorage.getItem("username")}
+    const profile:Profile = {username:sessionStorage.getItem("username")}
+    this.user = <Agent>{id:sessionStorage.getItem("userhash"),profile}
     this.user.avatar = sessionStorage.getItem("avatar")
   }
 

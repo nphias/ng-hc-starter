@@ -22,7 +22,7 @@ export class UserListComponent implements OnInit {
     try {
       this.userlist = this.agents.watch().valueChanges.pipe(map(result=>{
         if (!result.errors)
-          return result.data.allAgents.map(agent => <Agent>{id:agent.id,username:agent.username})
+          return result.data.allAgents.map(agent => <Agent>{id:agent.id,profile:agent.profile})
         this.errorMessage = result.errors[0].message
         return null
       }))

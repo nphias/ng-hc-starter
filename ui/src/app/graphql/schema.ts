@@ -1,23 +1,22 @@
 
 export const typeDefs =`
-  type Agent {
-    id: ID!
-    username: String
-  }
-  type Me {
-    id: ID!
-    agent: Agent!
-  }
-  type Query {
-    allAgents: [Agent!]!
-    me: Me!
-  }
-  type Mutation {
-    setUsername(username: String!): Agent!,
-    deleteUsername(name:String!): Boolean!
-  }
+type Profile {
+  username: String!
+}
 
-  type Subscription {
-    usernameSet: ID
-  }
+type Agent {
+  id: ID!
+  profile: Profile
+}
+
+type Query {
+  allAgents: [Agent!]!
+  me: Agent!
+}
+
+type Mutation {
+  createProfile(username: String!): Agent!
+}
+
+
 `;

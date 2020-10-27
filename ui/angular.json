@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-graphql-hc-starter": {
+    "ng-hc-starter": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng-graphql-hc-starter",
+            "outputPath": "dist/ng-hc-starter",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-graphql-hc-starter:build"
+            "browserTarget": "ng-hc-starter:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-graphql-hc-starter:build:production"
+              "browserTarget": "ng-hc-starter:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-graphql-hc-starter:build"
+            "browserTarget": "ng-hc-starter:build"
           }
         },
         "lint": {
@@ -93,5 +93,5 @@
         }
       }
     }},
-  "defaultProject": "ng-graphql-hc-starter"
+  "defaultProject": "ng-hc-starter"
 }

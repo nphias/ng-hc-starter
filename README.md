@@ -1,17 +1,16 @@
-# ng-graphql-hc-starter
+# ng--hc-starter
 
 # loading sequence
 ![image](angular_seq.png)
 
 ## Holochain setup
 
-currently uses holochain version 0.47-alpha1.  
-enter the dna directory and use nix shell to run the conductor :
+Uses holochain RSM 0.0.1 
+ensure you have followed the instructions to install holochain including holochain-run-dna
+use nix shell from the rsm install directory, change to the project directory
+run the conductor against a pre-compiled WASM from inside the dna directory :
 
-- nix-shell
-- hc package
-- hc run
-
+-  RUST_LOG=warn holochain-run-dna profiles.dna.gz
 
 ## UI setup
 
@@ -19,5 +18,3 @@ in another shell enter the ui directory.
 npm install / yarn install  
 npm start / yarn start  
 
-## TODO
- - functionality to signal back new users to the UI (apollo subscriptions)

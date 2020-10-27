@@ -19,7 +19,7 @@ export class HomeComponent {
       try{
         this.me.fetch().toPromise().then(result=>{
           console.log(result)
-          if (!result.data.me.agent.username){ //session invalid,  user not registered
+          if (!result.data.me.profile.username){ //session invalid,  user not registered
             this.logout() 
           }
         })

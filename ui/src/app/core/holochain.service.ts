@@ -1,37 +1,45 @@
 import { Injectable } from "@angular/core";
-import { HolochainConnection } from '@uprtcl/holochain-provider';
 import { environment } from '@environment';
-import { PubSub } from 'graphql-subscriptions'
+//import { PubSub } from 'graphql-subscriptions'
+import { AppWebsocket, CellId } from '@holochain/conductor-api'
 
 @Injectable({
   providedIn: "root"
 })
 export class HolochainService {
-  hcConnection: HolochainConnection
-  pubsub: PubSub = new PubSub()
+  hcConnection: AppWebsocket
+  cellId: CellId
+  //pubsub: PubSub = new PubSub()
 
   async init(){
-    this.hcConnection = new HolochainConnection({
-        host: environment.HOST_URL
-        })
-        this.pubsub.subscribe('username-set',()=>{console.log("hello")})
+        //this.pubsub.subscribe('username-set',()=>{console.log("hello")})
         try{
-            await this.hcConnection.ready()//.then((result)=>{
-              this.hcConnection.onSignal('username-set', ( user_address ) => {
-                this.pubsub.publish('username-set', user_address.user_address);
-                console.log("signal callback:",user_address)
-              })
+            this.hcConnection = await AppWebsocket.connect(environment.HOST_URL)//.ready()//.then((result)=>{
+              const appInfo = await this.hcConnection.appInfo({ app_id: environment.APP_ID });
+              this.cellId = appInfo.cell_data[0][0];
         }catch(error){
-            console.log("Holochain connection failed:"+error)
+            console.error("Holochain connection failed:")
+            throw(error)
         }
     }
 
-    call(instance:string, zome:string, fnName:string, args:{}){
-      return this.hcConnection.call(instance,zome,fnName,args)
+    call(zome:string, fnName:string, args:{}){
+      //try{
+        return this.hcConnection.callZome({
+          cap: null as any,
+          cell_id: this.cellId,
+          zome_name: zome,
+          fn_name: fnName,
+          payload: args,
+          provenance: this.cellId[1],
+        })
+      //}catch(ex){
+      //  console.log(ex)
+      //}
     }
 
     subscribe(event:string){
-      return this.pubsub.asyncIterator(event)
+    //  return this.pubsub.asyncIterator(event)
     }
 
 }

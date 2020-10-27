@@ -1,9 +1,9 @@
 {
-  "name": "Holochain App Name",
-  "description": "A Holochain app",
+  "name": "ng-hc-starter",
+  "description": "Holochain RSM starter demo",
   "authors": [
     {
-      "identifier": "Author Name <author@name.com>",
+      "identifier": "Thomas cal <nphias@gmail.com>",
       "public_key_source": "",
       "signature": ""
     }

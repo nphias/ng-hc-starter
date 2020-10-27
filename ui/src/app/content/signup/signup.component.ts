@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SetUsernameGQL } from 'src/app/graphql/queries/set-username-gql';
-import { RemoveMeGQL } from 'src/app/graphql/queries/remove-me-gql';
+import { CreateProfileGQL } from 'src/app/graphql/queries/create-profile-gql';
 import { MyProfileGQL,Agent } from 'src/app/graphql/queries/myprofile-gql'
 import { map } from 'rxjs/operators';
 
@@ -20,9 +19,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private setUser: SetUsernameGQL,
+    private createProfile: CreateProfileGQL,
     private myprofile:MyProfileGQL,
-    private removeUser:RemoveMeGQL,
     private router: Router
   ) {}
 
@@ -34,7 +32,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.registered = this.isRegistered().then((result)=>{
       if(result)
-      this.errorMessage = "You are registered as: "+this.user.username
+      this.errorMessage = "You are registered as: "+this.user.profile.username
       return result
     }) as Promise<boolean>
   }
@@ -52,8 +50,8 @@ export class SignupComponent implements OnInit {
     const isRegistered = await this.registered
     if (!isRegistered) {
       try{
-        await this.setUser.mutate({username:handle}).toPromise()//.then(()=>{
-        this.user.username = handle
+        await this.createProfile.mutate({username:handle}).toPromise()//.then(()=>{
+        this.user.profile = {username: handle}
         console.log("user registered")
         this.setAndRoute()
       }catch(error){
@@ -64,7 +62,7 @@ export class SignupComponent implements OnInit {
 
   setAndRoute(){
     sessionStorage.setItem("userhash",this.user.id)
-    sessionStorage.setItem("username",this.user.username)
+    sessionStorage.setItem("username",this.user.profile.username)
     sessionStorage.setItem("avatar",this.avatarLink)
     this.router.navigate(["profile"]);
   }
@@ -72,14 +70,16 @@ export class SignupComponent implements OnInit {
 
   private async isRegistered():Promise<boolean>{
     if(!this.user)
-    this.user =  await this.getProfileData()
-    if(this.user)
-     return this.user.username != (null || undefined) ? true : false       
+      this.user =  await this.getProfileData()
+    if(this.user.profile)
+      return this.user.profile.username != (null || undefined) ? true : false
+    else 
+      return false       
   }
 
   private getProfileData():Promise<Agent>{
     return this.myprofile.fetch().pipe(map(result=>{
-        return <Agent>{id:result.data.me.id, username:result.data.me.agent.username}
+        return <Agent>{id:result.data.me.id, profile:result.data.me.profile}
     })).toPromise().then((result)=> { return result},
       (reason)=>{ 
           this.errorMessage = reason
@@ -88,14 +88,6 @@ export class SignupComponent implements OnInit {
   }
 
   unregister(){
-    try{
-      this.removeUser.mutate({name:""}).toPromise().then((result)=>{
-        console.log("user unregistered:",result)
-        this.registered = new Promise(()=>{return false})
-        this.errorMessage = "Sign up"
-      })
-    }catch(error){
-      this.errorMessage = error
-    }
+    this.errorMessage = "unregister has not been implemented yet"  
   }
 }

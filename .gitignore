@@ -1,16 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# compiled output
-/dna/dist
-/dna/.cargo/
-/dna/target/
-/dna/test/package-lock.json
-/dna/test/node_modules
-/dna/zomes/profiles/code/target/*
-/dna/zomes/profiles/code/.hcbuild
-/dna/old_profiles
-# Only exists if Bazel was run
-/bazel-out
+target/
+node_modules/
+dist/
 
 # dependencies
 /node_modules

@@ -9,9 +9,11 @@ import gql from 'graphql-tag';
 })
 export class UsernameSetGQL extends Subscription {
   document = gql`
-    subscription username {
+    subscription getusernames {
       usernameSet {
-        id
+        user_address {
+          id
+        }
       }
     }
   `;

@@ -5,12 +5,14 @@ import gql from 'graphql-tag';
 @Injectable({
   providedIn: 'root',
 })
-export class SetUsernameGQL extends Mutation {
+export class CreateProfileGQL extends Mutation {
   document = gql`
-    mutation setUsername($username: String!) {
-      setUsername(username: $username) {
+    mutation CreateProfile($username: String!) {
+      createProfile(username: $username) {
         id
-        username
+        profile {
+          username
+        }
       }
     }
   `;

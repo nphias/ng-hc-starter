@@ -1,71 +1,48 @@
-import { environment } from '@environment';
+import {AgentPubKey } from '@holochain/conductor-api';
 import {GraphQLError} from 'graphql'
-import asyncify from 'callback-to-async-iterator';
 
 const ZOME_NAME = 'profiles'
-const INSTANCE_NAME = environment.INSTANCE_NAME
+
+export interface Profile {
+  username: string;
+}
 
 export const resolvers = {
   Query: {
     async allAgents(_, __, connection) {
-      if (connection.state == 2)
-        return new GraphQLError("Holochain is disconnected")
-      const allAgents = await connection.call(INSTANCE_NAME, ZOME_NAME,'get_all_agents', {});
+    //  if (connection.state == 2)
+     //   return new GraphQLError("Holochain is disconnected")
+      const allAgents = await connection.call(ZOME_NAME,'get_all_profiles', null);
       console.log(allAgents)
-      return allAgents.map((agent) => ({
-        id: agent.agent_id,
-        username: agent.username,
-      }));
+      return allAgents.map( (agent: { agent_pub_key: AgentPubKey; profile: Profile }) => ({
+        id: agent.agent_pub_key,
+        profile: agent.profile
+      }))
     },
     async me(_, __, connection) {
-      if (connection.state == 2)
-        return new GraphQLError("Holochain is disconnected")
-      const address = await connection.call(INSTANCE_NAME, ZOME_NAME,'get_my_address', {});
-      return { id: address };
-    },
-  },
-  Me: {
-    agent(parent) {
-      return { id: parent.id };
-    },
-  },
-  Agent: {
-    id(parent) {
-      return parent.id;
-    },
-    username(parent, _, connection ) {
-      //const cachedAgent = cache['data'].data[parent.id];
-      //if (cachedAgent && cachedAgent.username) return cachedAgent.username;
-      if (connection.state == 2)
-        return new GraphQLError("Holochain is disconnected")
-      return connection.call(INSTANCE_NAME, ZOME_NAME,'get_username', {
-        agent_address: parent.id,
-      });
+   //   if (connection.state == 2)
+     //   return new GraphQLError("Holochain is disconnected")
+      const response = await connection.call( ZOME_NAME,'get_my_profile', null);
+      if (!response) {
+        const my_pub_key = await connection.call(ZOME_NAME, 'who_am_i', null);
+        return { id: my_pub_key };
+      }
+      return {
+        id: response.agent_pub_key,
+        profile: response.profile,
+      };
+      //return { id: address };
     },
   },
   Mutation: {
-    async setUsername(_,  {username}, connection ) {
-      if (connection.state == 2)
-        return new GraphQLError("Holochain is disconnected")
-      const agent = await connection.call(INSTANCE_NAME, ZOME_NAME,'set_username', { username });
+    async createProfile(_,  {username}, connection ) {
+  //    if (connection.state == 2)
+    //    return new GraphQLError("Holochain is disconnected")
+      const response = await connection.call(ZOME_NAME,'create_profile', { username });
       return {
-        id: agent.agent_id,
-        username,
+        id: response.agent_pub_key,
+        profile: response.profile,
       };
     },
-    async deleteUsername(_, {}, connection) {
-      if (connection.state == 2)
-        return new GraphQLError("Holochain is disconnected")
-      return connection.call(INSTANCE_NAME, ZOME_NAME,'delete_my_username', {});
-    }
-  },
-  Subscription: {
-    usernameSet:{
-      //const cb = connection.onSignal('username-set', ({user_address})=>{
-       // console.log(user_address)
-       // return user_address
-      //})
-      subscribe(_, __, connection): AsyncIterable<any> { return connection.subscribe('username-set') }//asyncify(cb)
-      } 
-   }
+  }
 };

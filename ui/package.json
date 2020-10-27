@@ -1,6 +1,7 @@
 {
-  "name": "ng-graphql-hc-starter",
-  "repository": "https://github.com/nphias/ng-graphql-hc-starter",
+  "name": "ng-hc-starter",
+  "description": "holochain starter demo",
+  "repository": "https://github.com/nphias/ng-hc-starter",
   "license": "MIT",
   "version": "0.0.1",
   "author": "nphias",
@@ -8,6 +9,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "startbuild": "http-server dist/ng-hc-starter",
     "lint": "ng lint"
   },
   "dependencies": {
@@ -20,6 +22,7 @@
     "@angular/platform-browser": "^9.1.11",
     "@angular/platform-browser-dynamic": "^9.1.11",
     "@angular/router": "^9.1.11",
+    "@holochain/conductor-api": "github:guillemcordoba/holochain-conductor-api",
     "@ng-bootstrap/ng-bootstrap": "6.2.0",
     "@uprtcl/holochain-provider": "0.0.7-alpha.30.2",
     "apollo-angular": "^1.9.1",
