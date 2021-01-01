@@ -8,6 +8,7 @@
               <tr>
                 <th scope="col">Avatar</th>
                 <th scope="col">Name</th>
+                <th scope="col">properties</th>
                 <th scope="col">Date Joined</th>
                 <th scope="col">Last seen</th>
               </tr>
@@ -15,7 +16,7 @@
            
             <tbody>
                 <tr *ngFor='let user of (userlist | async)'>
-                  <th scope="row"><a routerLink="/profile/{{ user.hash }}" routerLinkActive="active">
+                  <th scope="row"><a routerLink="/profile/{{ user.id }}" routerLinkActive="active">
                     <img
                       class="photo-profile"
                       src="../assets/img/avatar_placeholder.jpg"
@@ -24,7 +25,8 @@
                       alt="..."
                     />
                   </a></th>
-                  <td>{{user.username}}</td>
+                  <td>{{user.profile.username}}</td>
+                  <td>{{user.profile.fields}}</td>
                   <td>31/12/2012</td>
                   <td>01/01/2020</td>
                 </tr>

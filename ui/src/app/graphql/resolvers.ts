@@ -1,22 +1,21 @@
 import {AgentPubKey } from '@holochain/conductor-api';
+import { profile } from 'console';
 import {GraphQLError} from 'graphql'
+import { Profile } from './interfaces'
 
 const ZOME_NAME = 'profiles'
-
-export interface Profile {
-  username: string;
-}
 
 export const resolvers = {
   Query: {
     async allAgents(_, __, connection) {
     //  if (connection.state == 2)
      //   return new GraphQLError("Holochain is disconnected")
-      const allAgents = await connection.call(ZOME_NAME,'get_all_profiles', null);
-      console.log(allAgents)
-      return allAgents.map( (agent: { agent_pub_key: AgentPubKey; profile: Profile }) => ({
+      const response = await connection.call(ZOME_NAME,'get_all_profiles', null);
+      console.log(response)
+      return response.map((agent: { 
+        agent_pub_key: AgentPubKey, profile: Profile}) => ({
         id: agent.agent_pub_key,
-        profile: agent.profile
+        profile: {username:agent.profile.username,fields:JSON.stringify(agent.profile.fields)}
       }))
     },
     async me(_, __, connection) {
@@ -35,13 +34,14 @@ export const resolvers = {
     },
   },
   Mutation: {
-    async createProfile(_,  {username}, connection ) {
+    async createProfile(_,  {username, fieldlist}, connection ) {
   //    if (connection.state == 2)
     //    return new GraphQLError("Holochain is disconnected")
-      const response = await connection.call(ZOME_NAME,'create_profile', { username });
+    const fields = JSON.parse(fieldlist)
+      const response = await connection.call(ZOME_NAME,'create_profile', { username, fields });
       return {
         id: response.agent_pub_key,
-        profile: response.profile,
+        profile: {username:response.profile.username,fields:JSON.stringify(response.profile.fields)}
       };
     },
   }

@@ -15,8 +15,8 @@ export class HolochainService {
         //this.pubsub.subscribe('username-set',()=>{console.log("hello")})
         try{
             this.hcConnection = await AppWebsocket.connect(environment.HOST_URL)//.ready()//.then((result)=>{
-              const appInfo = await this.hcConnection.appInfo({ app_id: environment.APP_ID });
-              this.cellId = appInfo.cell_data[0][0];
+            const appInfo = await this.hcConnection.appInfo({ installed_app_id: environment.APP_ID });
+            this.cellId = await appInfo.cell_data[0][0];
         }catch(error){
             console.error("Holochain connection failed:")
             throw(error)

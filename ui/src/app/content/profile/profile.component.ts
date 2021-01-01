@@ -2,12 +2,11 @@ import { Component, OnInit, Input } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { HolochainService } from 'src/app/core/holochain.service';
-import { Agent, Profile } from 'src/app/graphql/queries/myprofile-gql';
-import { UsernameSetGQL } from 'src/app/graphql/queries/subscriptions-gql';
-import { Observable,Subscription } from 'rxjs';
-import { Apollo } from 'apollo-angular';
+//import { Agent, Profile } from 'src/app/graphql/queries/myprofile-gql';
+import { Agent, Profile } from 'src/app/graphql/interfaces'
 
+//import { UsernameSetGQL } from 'src/app/graphql/queries/subscriptions-gql';
+//import { Observable,Subscription } from 'rxjs';
 
 
 @Component({
@@ -18,13 +17,11 @@ import { Apollo } from 'apollo-angular';
 export class ProfileComponent implements OnInit {
   user: Agent //Promise<User> | null = null
   errorMessage:string = ""
-  usernameSubscription: Subscription
+  //usernameSubscription: Subscription
 
   constructor(
-    private apollo: Apollo,
     private fb: FormBuilder,
     private router: Router,
-    private holochainservice: HolochainService,
   ) {}
 
   postForm = this.fb.group({
@@ -34,7 +31,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     if (!sessionStorage.getItem("userhash"))
       this.router.navigate(["signup"]);
-    const profile:Profile = {username:sessionStorage.getItem("username")}
+    const profile:Profile = {username:sessionStorage.getItem("username"),fields:{"":""}}
     this.user = <Agent>{id:sessionStorage.getItem("userhash"),profile}
     this.user.avatar = sessionStorage.getItem("avatar")
   }

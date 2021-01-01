@@ -1,16 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Query} from 'apollo-angular';
 import gql from 'graphql-tag';
-
-export interface Profile {
-  username: string
-}
-
-export interface Agent {
-  id: string;
-  profile: Profile;
-  avatar: string
-}
+import {Agent} from '../interfaces'
 
 export interface Response {
   allAgents: Agent[]
@@ -26,6 +17,7 @@ export class AllAgentsGQL extends Query<Response> {
       id
       profile {
         username
+        fields
       }
     }
   }

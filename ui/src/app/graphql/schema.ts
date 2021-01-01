@@ -1,7 +1,9 @@
 
 export const typeDefs =`
+
 type Profile {
   username: String!
+  fields: String
 }
 
 type Agent {
@@ -15,7 +17,7 @@ type Query {
 }
 
 type Mutation {
-  createProfile(username: String!): Agent!
+  createProfile(username: String!, fieldlist: String!): Agent!
 }
 
 

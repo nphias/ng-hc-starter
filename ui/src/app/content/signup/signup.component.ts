@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreateProfileGQL } from 'src/app/graphql/queries/create-profile-gql';
-import { MyProfileGQL,Agent } from 'src/app/graphql/queries/myprofile-gql'
+import { MyProfileGQL } from 'src/app/graphql/queries/myprofile-gql'
 import { map } from 'rxjs/operators';
+import {Agent} from 'src/app/graphql/interfaces'
 
 
 @Component({
@@ -46,16 +47,20 @@ export class SignupComponent implements OnInit {
     }
     if (this.avatarLink.length == 0) {
       this.avatarLink = "../../assets/img/avatar_placeholder.jpg";
+      var fieldset = '{"":""}'
+    }else {
+      var fieldset = '{"avatar":"'+this.avatarLink+'"}'
+      this.avatarLink = "../../assets/img/avatar_placeholder.jpg";
     }
     const isRegistered = await this.registered
     if (!isRegistered) {
       try{
-        await this.createProfile.mutate({username:handle}).toPromise()//.then(()=>{
-        this.user.profile = {username: handle}
+        await this.createProfile.mutate({username:handle,fieldlist:fieldset}).toPromise()//.then(()=>{
+        this.user.profile = {username: handle, fields:{"":""}}
         console.log("user registered")
         this.setAndRoute()
       }catch(error){
-        this.errorMessage = error + " Note: an error here might mean you are trying to register with a pre-existing / existing username "
+        this.errorMessage = error // + " Note: an error here might mean you are trying to register with a pre-existing / existing username "
       }
     } 
   };

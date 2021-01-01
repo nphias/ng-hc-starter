@@ -7,11 +7,12 @@ import gql from 'graphql-tag';
 })
 export class CreateProfileGQL extends Mutation {
   document = gql`
-    mutation CreateProfile($username: String!) {
-      createProfile(username: $username) {
+    mutation CreateProfile($username: String!, $fieldlist: String!) {
+      createProfile(username: $username, fieldlist: $fieldlist) {
         id
         profile {
           username
+          fields
         }
       }
     }
