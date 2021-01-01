@@ -17,12 +17,12 @@ install the wasm feature:
     - rustup target add wasm32-unknown-unknown
 
 follow instructions to install holochain including holochain-run-dna:
-    - do not use nix shell .. it is currently broken.
-    - git clone the @holochain/conductor-api repo (or just download the install-holochain.sh script file)
-    - run the ./install-holochain.sh script
+  - do not use nix shell .. it is currently broken.
+  - git clone the @holochain/conductor-api repo (or just download the install-holochain.sh script file)
+  - run the ./install-holochain.sh script
 
 install npm @holochain-open-dev/holochain-run-dna globally:
-    - npm install -g @holochain-open-dev/holochain-run-dna 
+  - npm install -g @holochain-open-dev/holochain-run-dna 
 
 from the dna directory:
 
