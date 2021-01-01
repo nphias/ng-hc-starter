@@ -13,6 +13,7 @@ built to work with holochain build: 3675b58
 Ensure you toolkit is up-to-date (rust and rustup)
 from the command line:
   - rustup update
+  
 install the wasm feature:
   - rustup target add wasm32-unknown-unknown
 
