@@ -8,18 +8,19 @@
 Uses holochain RSM 0.0.1 
 built to work with holochain build: 3675b58
 
-ensure you have followed the instructions to install holochain including holochain-run-dna
-do not use nix shell .. it is currently broken.
-
 ensure you toolkit is up-to-date (rust and rustup)
+from the commandline:
+ rustup update
 install the wasm feature:
-rustup target add wasm32-unknown-unknown
+ rustup target add wasm32-unknown-unknown
 
-git clone the @holochain/conductor-api repo
-run the ./install-holochain.sh script
+follow instructions to install holochain including holochain-run-dna:
+  do not use nix shell .. it is currently broken.
+  git clone the @holochain/conductor-api repo
+  run the ./install-holochain.sh script
 
 install npm @holochain-open-dev/holochain-run-dna globally:
-npm install -g @holochain-open-dev/holochain-run-dna 
+  npm install -g @holochain-open-dev/holochain-run-dna 
 
 from the dna directory:
 
