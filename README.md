@@ -12,9 +12,9 @@ built to work with holochain build: 3675b58
 
 Ensure you toolkit is up-to-date (rust and rustup)
 from the command line:
-    - rustup update
+  - rustup update
 install the wasm feature:
-    - rustup target add wasm32-unknown-unknown
+  - rustup target add wasm32-unknown-unknown
 
 follow instructions to install holochain including holochain-run-dna:
   - do not use nix shell .. it is currently broken.
