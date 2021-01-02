@@ -5,6 +5,12 @@
   "license": "MIT",
   "version": "0.0.1",
   "author": "nphias",
+  "keywords": [
+		"angular",
+		"graphql",
+		"holochain",
+		"starterkit"
+	],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

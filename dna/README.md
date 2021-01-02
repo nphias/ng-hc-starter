@@ -6,9 +6,23 @@ To change the code, you can work either opening VSCode inside the root folder of
 
 ## Requirements
 
-- Having run through [holochain RSM installation](https://github.com/holochain/holochain-dna-build-tutorial).
-- Run all the steps described in this README.md inside the `nix-shell` of the `holochain` core repository.
-- Have [`holochain-run-dna`](https://www.npmjs.com/package/@holochain-open-dev/holochain-run-dna) installed globally.
+Uses holochain RSM 0.0.1 
+built to work with holochain build: 3675b58
+
+Ensure you toolkit is up-to-date (rust and rustup)
+from the command line:
+  - rustup update
+  
+install the wasm feature:
+  - rustup target add wasm32-unknown-unknown
+
+follow instructions to install holochain including holochain-run-dna:
+  - do not use nix shell .. it is currently broken.
+  - git clone the @holochain/conductor-api repo (or just download the install-holochain.sh script file)
+  - run the ./install-holochain.sh script
+
+install npm @holochain-open-dev/holochain-run-dna globally:
+  - npm install -g @holochain-open-dev/holochain-run-dna 
 
 ## Building
 
@@ -37,4 +51,3 @@ holochain-run-dna profiles.dna.gz
 
 Now `holochain` will be listening at port `8888`;
 
-Restart the command if it fails (flaky holochain start).

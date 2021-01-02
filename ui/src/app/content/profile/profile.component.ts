@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 //import { Agent, Profile } from 'src/app/graphql/queries/myprofile-gql';
 import { Agent, Profile } from 'src/app/graphql/interfaces'
 
@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   postForm = this.fb.group({
@@ -29,11 +30,16 @@ export class ProfileComponent implements OnInit {
   });
 
   ngOnInit() {
-    if (!sessionStorage.getItem("userhash"))
+    console.log(this.activatedRoute.snapshot.params.id)
+    if (!sessionStorage.getItem("userhash")) //not logged in 
       this.router.navigate(["signup"]);
-    const profile:Profile = {username:sessionStorage.getItem("username"),fields:{"":""}}
-    this.user = <Agent>{id:sessionStorage.getItem("userhash"),profile}
-    this.user.avatar = sessionStorage.getItem("avatar")
+    if (this.activatedRoute.snapshot.params.id == sessionStorage.getItem("userhash")) { //same user
+      const profile:Profile = {username:sessionStorage.getItem("username"),fields:{"":""}}
+      this.user = <Agent>{id:sessionStorage.getItem("userhash"),profile}
+      this.user.avatar = sessionStorage.getItem("avatar")
+    }else{
+      //TODO get profile of other user
+    }
   }
 
   logout(){
