@@ -7,6 +7,9 @@ dist/
 # dependencies
 /node_modules
 
+#temps
+css_conversion.css
+
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json

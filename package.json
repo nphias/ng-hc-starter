@@ -1,0 +1,41 @@
+{
+  "name": "ng-hc-starter",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --open",
+    "player2": "ng serve --open --port 4201 --configuration player2",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "mock": "ng serve --open --configuration mock"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~12.0.2",
+    "@angular/common": "~12.0.2",
+    "@angular/compiler": "~12.0.2",
+    "@angular/core": "~12.0.2",
+    "@angular/forms": "~12.0.2",
+    "@angular/platform-browser": "~12.0.2",
+    "@angular/platform-browser-dynamic": "~12.0.2",
+    "@angular/router": "~12.0.2",
+    "@holochain/conductor-api": "0.0.4",
+    "install": "^0.13.0",
+    "js-base64": "^3.6.1",
+    "mobx": "^6.3.2",
+    "mobx-angular": "^4.3.0",
+    "npm": "^7.15.0",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.1.0",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~12.0.2",
+    "@angular/cli": "~12.0.2",
+    "@angular/compiler-cli": "~12.0.2",
+    "@types/node": "^12.11.1",
+    "buffer": "^5.7.1",
+    "tailwindcss": "^2.1.2",
+    "typescript": "~4.2.3"
+  }
+}

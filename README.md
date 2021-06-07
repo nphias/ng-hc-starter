@@ -1,46 +1,31 @@
-# ng-hc-starter
+# NgHcStarter
 
-Angular, graphql, holochain starter kit
-
-# loading sequence
-![image](angular_seq.png)
-
-## Holochain setup
-
-Uses holochain RSM 0.0.1 
-built to work with holochain build: 3675b58
-
-Ensure you toolkit is up-to-date (rust and rustup)
-from the command line:
-  - rustup update
-  
-install the wasm feature:
-  - rustup target add wasm32-unknown-unknown
-
-follow instructions to install holochain including holochain-run-dna:
-  - do not use nix shell .. it is currently broken.
-  - git clone the @holochain/conductor-api repo (or just download the install-holochain.sh script file)
-  - run the ./install-holochain.sh script
-
-install npm @holochain-open-dev/holochain-run-dna globally:
-  - npm install -g @holochain-open-dev/holochain-run-dna 
-
-from the dna directory:
-
-choose to:
-1. run the conductor against a pre-compiled WASM from inside the dna directory 
-    -  RUST_LOG=warn holochain-run-dna profiles.dna.gz
-2. build and run the wasm manually:
-    -  CARGO_TARGET_DIR=target cargo build --release --target wasm32-unknown-unknown
-    -  dna-util -c profiles.dna.workdir
-    -  RUST_LOG=warn holochain-run-dna profiles.dna.gz
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
 
 
-## UI setup
+to install:
+ npm install --legacy-peer-deps
 
-from the UI directory:
+## Development server
 
-in another shell enter the ui directory.  
-npm install / yarn install  
-npm start / yarn start  
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
