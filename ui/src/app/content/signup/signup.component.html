@@ -1,0 +1,24 @@
+  <div class="bg-world-splash bg-cover bg-center fixed inset-0 z-20">
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="border-2 border-opacity-50 border-gray-200 rounded-lg z-30 p-11 max-w-xs shadow-2xl">
+          <div *mobxReaction="isRegistered.bind(this)">
+            <form class="font-sans text-sm space-y-2 text-center" [formGroup]="profileForm" (ngSubmit)="signUp()">
+                <label style="color:red">{{errorMessage}}</label>
+                <input class="w-full h-10 px-2" type="text" placeholder="username" formControlName="handle" />
+                <button class="w-full py-3 px-4 bg-gray-600 text-white hover:bg-blue-300 border" >
+                  REGISTER
+                </button>
+            </form>
+          </div>
+         <!-- <button *ngIf="registered" (click)="setAndRoute()">
+            Continue
+          </button>
+          <br/><br/>
+          <button *ngIf="registered" (click)="setAndRoute()">
+            unregister
+            *ngIf="!registered"
+            *ngIf="!registered"
+          </button>-->
+      </div>
+    </div>
+  </div>

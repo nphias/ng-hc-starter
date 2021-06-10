@@ -1,31 +1,15 @@
-# NgHcStarter
+# Ng-Hc-Starter
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
+A template starter kit for holochain development
+This is an angular holochain project to demo basic functionality
+with a clean easy to understand architecture, it uses mobx for state control and tailwind for styling
 
+The starter kit lets you run, build and mock a holochain happ
+further instructions for UI setup are in the UI directory
+further instructions for holochain setup are in the DNA directory
 
-to install:
- npm install --legacy-peer-deps
+unless in Mock mode the UI is dependent on the holochain conductor running.
+so for holochain tests, ensure it is setup and running before starting the UI 
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+things go out of date quickly in this landscape.
+I will endevour to keep things inline with changes.
