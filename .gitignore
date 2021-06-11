@@ -10,7 +10,7 @@
 /dna/target/
 /dna/.cargo/
 /dna/zome/target/
-/dna/zome/.hc
+/dna/zome/.hc*
 
 # profiling files
 chrome-profiler-events*.json
