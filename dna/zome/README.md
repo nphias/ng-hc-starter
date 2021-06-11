@@ -40,7 +40,7 @@ Now `holochain` will be listening at port `8888`;
 
 # Running two player mode
 
-if on your same machine you wil need 4 browser windows (two for holochain and two for the UI)
+if on your same machine you wil need 4 bash windows (two for holochain and two for the UI)
 
 hc s generate workdir/happ/profiles.happ --run=8888 network -b yourbootstapserver quic
 hc s generate workdir/happ/profiles.happ --run=8889 network -b yourbootstapserver quic
