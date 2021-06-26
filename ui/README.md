@@ -6,8 +6,13 @@ If you want to install from commandline instead of cloning..
 see the script at ng-starter.sh (which i will try to keep up to date)
 The steps in the script require manual intervention and are designed to work with angular 12.0.2 
 
-to install (legacy needed currently for mobx-angular hack):
- npm install --legacy-peer-deps  
+- Required Dependencies
+ works with LTS node 14.x and nvm 7.x
+
+IMPORTANT: Currently for this version we need to do a special install 
+(legacy needed currently for mobx-angular hack):
+ 
+`npm install --legacy-peer-deps`  
 
 ## Development server
 
